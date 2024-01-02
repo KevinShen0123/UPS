@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <form th:action="@{/start/registerpost}" method="post">
+        <input type="text" id="lusername" name="lusername" placeholder="username">
+        <input type="text" id="lpassword" name="lpassword" placeholder="password">
+        <input type="text" id="lemail" name="lemail" placeholder="email">
+        <input type="submit" id="searchbutton" value="search">
+    </form>
+</head>
+<body>
+<!--&lt;!&ndash; Check if the result is 0 (error) &ndash;&gt;-->
+<div th:if="${rresult == 0}">
+    <p>Registration Error. Please check your information and try again.</p>
+</div>
+<div th:if="${rresult == 1}">
+    <p>Registration Successful. You can now <a href="/login">login</a>.</p>
+</div>
+</body>
+</html>

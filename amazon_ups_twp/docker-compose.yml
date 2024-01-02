@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: mini_ups
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 20230101
+    restart: always
+    volumes:
+        - data-volume:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+  back:
+    build:
+      context: ./back-server-python
+      dockerfile: Dockerfile
+    ports:
+      - "9090:9090"
+    depends_on:
+      - db
+volumes:
+    data-volume:
